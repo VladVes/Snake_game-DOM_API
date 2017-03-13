@@ -5,9 +5,26 @@
 	<title>JS Lesson 1</title>
 	<script>
 		var car = "Audi";
-		var power = 500;
+		var carPower = 500;
+		
+		var time = 10;
+		var speed = 90;
+		var distance = time * speed; //string comment
 
-		if (power < 400) {
+		var COLORE_RED = '#FF0000'; //ES5 pseudo constant, string type of data, usig singl quotes
+
+		var booleanExample = true;
+
+		var objectExample = {
+			property: 'value',
+			property: 'value1'
+		}
+
+		/* multi
+		string
+		comment*/
+
+		if (carPower < 400) {
 			alert("This is for fast cars only!")
 		} else {
 			alert("Welcome "+ car + " owner!");
@@ -18,6 +35,7 @@
 		}, 5000)
 	</script>
 	<script src="script.js"></script>
+
 </head>
 
 <body>
