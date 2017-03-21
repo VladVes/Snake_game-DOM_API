@@ -1,1 +1,1 @@
-JavaScript tests
+JavaScript first lessons
