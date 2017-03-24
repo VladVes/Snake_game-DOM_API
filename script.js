@@ -41,23 +41,16 @@ function exFor()
 	{}
 }
 
-var i = 0, a = 20;
 
-function exPyramid(i, a)
+function exPyramid(i, a, str = '*')
 {
 	
-	while (i < a){
-		if (i == 0) {
-			console.log('*');
-			++i;
-			continue;
-		}
-		console.log(i);
-		console.log('*' + exPyramid(++i, a));
-		//return ('*');
-		
+	if (i == a) {
+		console.log(str);
+	} else {
+		console.log(str);
+		exPyramid(++i, a, str += '*');
 	}
-	return('*');
 }
 
 
@@ -66,6 +59,6 @@ function exPyramid(i, a)
 exPrint100();
 exDoWile0100();
 exFor();
-exPyramid(0, 5);
+exPyramid(0, 20);
 
 
