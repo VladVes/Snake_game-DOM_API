@@ -1,1 +1,2 @@
+Veselov Vladimir
 JavaScript first lessons

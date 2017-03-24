@@ -1,135 +1,71 @@
-var a = 50;
-var b = 70;
-var c = null;
-var d = 0;
-var res;
+//1
 
-function compare(a, b)
+function exPrint100()
 {
-	if (a >= 0 && b >= 0) {
-		res = a - b;
-		alert('a - b = ' + res);
-	}else if (a <0 && b < 0) {
-		res = a * b;
-		alert('a + b = ' + res);
-	}else {
-		res = a + b;
-		alert('a + b = ' + res);
+	console.log('#1 printing integers from 0 to 100 using "while": ')
+
+	var a = 100, i = 0;
+	//document.write('Print from 0 to 100 by "While"');
+	//document.write('A = ' + a);
+	while (i <= a) {
+	//	document.write();
+		console.log(i);
+		i++;
 	}
 }
 
+function exDoWile0100()
+{
+	console.log('#2 printing integers from 0 to 10 and text messages using "do while": ')
+	var a = 10, i = 0;
 
-compare(a, b);
-
-a = 10;
-
-switch (a) {
-	case 1:
-		alert('1');
-	case 2:
-		alert('2');
-	case 3:
-		alert('3');
-	case 4:
-		alert('4');
-	case 5:
-		alert('5');
-	case 6:
-		alert('6');
-	case 7:
-		alert('7');
-	case 8:
-		alert('8');
-	case 9:
-		alert('9');
-	case 10:
-		alert('10');
-	case 11:
-		alert('11');
-	case 12:
-		alert('12');
-	case 13:
-		alert('13');	
-	case 14:
-		alert('14');
-	case 15:
-		alert('15');
-		break;
+	do {
+		if (i == 0) {
+			console.log(i + '- this is zero!');
+			i++;
+			continue;
+		} else if (i % 2 == 0) {
+			console.log(i + '- this is an even integer');
+		} else {
+			console.log(i + '- this is an odd integer');
+		}
+		i++;
+	} while (i <= a);
 }
 
-
-function sum(a, b)
+function exFor()
 {
-	return a + b;
+	console.log('#3 printing integers from 0 to 9 using "for" without body operators: ');
+
+	for (var i = 0; i < 10; console.log(i++))
+	{}
 }
 
-function subtr(a, b)
-{
-	return a - b;
-}
+var i = 0, a = 20;
 
-function div(a, b)
+function exPyramid(i, a)
 {
-	return a / b;
-}
-
-function mult(a, b)
-{
-	return a * b;
-}
-
-function math(a, b, operation)
-{
-	switch (operation){
-		case '+':
-			res = sum(a,b);
-			alert('Operation + ' + res);
-			break;
-		case '-':
-			res = subtr(a,b);
-			alert('Operation - ' + res);
-			break;	
-		case '/':
-			res = div(a,b);
-			alert('Operation / ' + res);
-			break;	
-		case '*':
-			res = mult(a,b);
-			alert('Operation * ' + res);
-			break;	
+	
+	while (i < a){
+		if (i == 0) {
+			console.log('*');
+			++i;
+			continue;
+		}
+		console.log(i);
+		console.log('*' + exPyramid(++i, a));
+		//return ('*');
+		
 	}
-}
-
-math(a, b, '+');
-math(a, b, '-');
-math(a, b, '/');
-math(a, b, '*');
-
-if (c == d) {
-		alert ('c is ' + c + 'and d is ' + d + ' c = d ');
-}else if (c > d) {
-		alert ('c is ' + c + 'and d is ' + d + ' c > d');
-}else if (c < d) {
-		alert ('c is ' + c + 'and d is ' + d + ' c < d');
-}else if (c === d){
-	alert ('c is ' + c + 'and d is ' + d + ' c === d');
-}else alert ('c is ' + c + ' and d is ' + d + ' c != d');
-
-
-function power(val, pow)
-{
-	if (pow == 1) {
-	  return(val);
-	 } else return (val * power(val, --pow));
+	return('*');
 }
 
 
-res = power(2, 8);
-alert('power(2, 8); Recursion is ' + res);
 
 
-
-
-
+exPrint100();
+exDoWile0100();
+exFor();
+exPyramid(0, 5);
 
 
