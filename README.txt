@@ -1,1 +1,2 @@
-JavaScript tests
+Veselov Vladimir
+JavaScript first lessons
