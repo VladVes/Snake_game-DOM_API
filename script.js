@@ -1,64 +1,38 @@
 //1
+var audiA5 = {
+	make: 'Audi',
+	model: 'A5',
+	year: 2015,
+	color: 'red',
+	seats: 2,
+	power: 225,
+	drive: function() {//метод 
 
-function exPrint100()
-{
-	console.log('#1 printing integers from 0 to 100 using "while": ')
+	}
+};
 
-	var a = 100, i = 0;
-	//document.write('Print from 0 to 100 by "While"');
-	//document.write('A = ' + a);
-	while (i <= a) {
-	//	document.write();
-		console.log(i);
-		i++;
+
+audiA5.price = 1000000; //добавили новое свойство price
+
+delete audiA5.price; //удалить свойство
+
+var car = {
+	mileage: 0,
+	drive: function(km) {
+		this.mileage += km;	
 	}
 }
+car.drive(100);
 
-function exDoWile0100()
-{
-	console.log('#2 printing integers from 0 to 10 and text messages using "do while": ')
-	var a = 10, i = 0;
-
-	do {
-		if (i == 0) {
-			console.log(i + '- this is zero!');
-			i++;
-			continue;
-		} else if (i % 2 == 0) {
-			console.log(i + '- this is an even integer');
-		} else {
-			console.log(i + '- this is an odd integer');
-		}
-		i++;
-	} while (i <= a);
+for (prop in audiA5) {
+	console.log(prop + ':' + audiA5[prop]);
 }
 
-function exFor()
-{
-	console.log('#3 printing integers from 0 to 9 using "for" without body operators: ');
+if ('make' in audiA5) {
+console.log('Make is in audiA5!');
+}else console.log('Make is NOT in audiA5!');
 
-	for (var i = 0; i < 10; console.log(i++))
-	{}
-}
-
-
-function exPyramid(i, a, str = '*')
-{
-	
-	if (i == a) {
-		console.log(str);
-	} else {
-		console.log(str);
-		exPyramid(++i, a, str += '*');
-	}
-}
-
-
-
-
-exPrint100();
-exDoWile0100();
-exFor();
-exPyramid(0, 20);
-
+if ('make' in audiA5 && car.make == 'Audi') {
+console.log('Make is in audiA5!');
+}else console.log('Make is NOT in audiA5!');
 
