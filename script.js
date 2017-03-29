@@ -1,8 +1,8 @@
 //1
 function createObjFromNum(num)
 {
-	var obj = {}, props = ['units', 'dozens', 'hundreds'], arg = number(num), i = 0;
-	if (typof(num) == 'number') {
+	var obj = {}, props = ['units', 'dozens', 'hundreds'], arg, i = 0;
+	if (typeof(num) == 'number') {
 		arg = num;
 		
 		if (arg < 0 || arg > 999) {
@@ -10,20 +10,19 @@ function createObjFromNum(num)
 			return false;
 		}
 
-		while(i <= props.length) {
-			obj[prop[i++]] = arg % 10;
+		while(i < props.length) {
+			obj[props[i++]] = arg % 10;
 			arg = Math.floor(arg / 10);
 			
-		} return obj;
+		}
+		console.log(obj);
+		return obj;
 
 	
 	} else {
 		console.log('wrong type of argument!');
 		return false;
 	}
-
-
-
 }
 
 createObjFromNum(567);
