@@ -7,7 +7,6 @@ var audiA5 = {
 	seats: 2,
 	power: 225,
 	drive: function() {//метод 
-
 	}
 };
 
