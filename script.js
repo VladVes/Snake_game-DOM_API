@@ -1,38 +1,31 @@
 //1
-var audiA5 = {
-	make: 'Audi',
-	model: 'A5',
-	year: 2015,
-	color: 'red',
-	seats: 2,
-	power: 225,
-	drive: function() {//метод 
+function createObjFromNum(num)
+{
+	var obj = {}, props = ['units', 'dozens', 'hundreds'], arg = number(num), i = 0;
+	if (typof(num) == 'number') {
+		arg = num;
+		
+		if (arg < 0 || arg > 999) {
+			console.log('incorrect range of argument! It must be from 0 to 999');
+			return false;
+		}
 
+		while(i <= props.length) {
+			obj[prop[i++]] = arg % 10;
+			arg = Math.floor(arg / 10);
+			
+		} return obj;
+
+	
+	} else {
+		console.log('wrong type of argument!');
+		return false;
 	}
-};
 
 
-audiA5.price = 1000000; //добавили новое свойство price
 
-delete audiA5.price; //удалить свойство
-
-var car = {
-	mileage: 0,
-	drive: function(km) {
-		this.mileage += km;	
-	}
-}
-car.drive(100);
-
-for (prop in audiA5) {
-	console.log(prop + ':' + audiA5[prop]);
 }
 
-if ('make' in audiA5) {
-console.log('Make is in audiA5!');
-}else console.log('Make is NOT in audiA5!');
+createObjFromNum(567);
 
-if ('make' in audiA5 && car.make == 'Audi') {
-console.log('Make is in audiA5!');
-}else console.log('Make is NOT in audiA5!');
 
