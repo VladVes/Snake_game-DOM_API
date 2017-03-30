@@ -3,32 +3,72 @@
 <head>
 	<meta charset="UTF-8">
 	<title>JS Lesson 5</title>
+	<link rel="stylesheet" href="css/main.css">
 	
-	<script src="script.js" defer></script>
+	<!-- <script src="script.js" defer></script> -->
 
 </head>
 
 <body>
-	<div class="maincontainer">
-		<header>
-			
-		</header>
+	<div  class="maincontainer">
+		<div id="chessArea" class="centering"></div>
+		
 
-		<main>
-			<section>
-				<article>
-					<h1>JS Lesson 5</h1>
-				</article>			
-			</section>
-		</main>
-
-		<footer>
-			
-		</footer>
-
+		
 
 		
 	</div>
+	
+	<script>
+		
+		function drawBoard(length, area)
+		{
+			var line = [], chessBoard = [], i = 0, j = 0, color;
+
+			while (i < length) {
+				
+				line[i] = drawLine(area);
+
+				for (j = 0; j < length; j++) {
+					chessBoard[i] = [j];
+					chessBoard[i][j] = document.createElement('div');
+					drawSquare(chessBoard[i][j], getColor(i, j));
+					line[i].appendChild(chessBoard[i][j]);
+				}
+				i++;
+			}
+		}
+
+		function drawLine(area)
+		{
+			var lineNode = document.createElement('div');
+			lineNode.className = 'line';
+			area.appendChild(lineNode);
+			return lineNode;
+		}
+
+
+		function drawSquare(node, sqColor, mainClass = 'sqDefault')
+		{
+			node.className = mainClass;
+			node.classList.add(sqColor);
+		}
+
+		function getColor(i, j)
+		{
+			if ((i % 2 == 0 && j % 2 == 0) || (i % 2 == 1 && j % 2 == 1)) {
+				return 'black';
+			} else {
+				return 'white';
+			}
+		}
+
+
+
+		var chessArea = document.getElementById('chessArea');
+		drawBoard(8, chessArea);
+
+	</script>
 
 	
 </body>
