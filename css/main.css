@@ -45,12 +45,38 @@
 }
 
 .sqDefault {
-	width: 12.5%;
+	width: 12.2%;
 	height: 100%;
 	border: 1px solid black;
 	box-sizing: border-box;
 	float: left;
 }
+
+.numBlock {
+	width: 1.7%;
+	height: 100%;
+	box-sizing: border-box;
+	float: left;
+	text-align: center;
+	padding-right: 3px;
+	padding-top: 4%;
+}
+
+.adcBlock {
+	width: 12.2%;
+	height: 100%;
+	
+	float: left;
+}
+
+.abcLine {
+	width: 100%;
+	height: 2%;
+	/*height: 100%;*/
+	clear: both;
+	float: left;	
+}
+
 
 .black {
 	background-color: #000;

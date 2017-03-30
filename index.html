@@ -14,45 +14,73 @@
 		<div id="chessDesk" class="centering">
 			<div id="chessArea"></div>
 		</div>
-
-		
-
-		
 	</div>
 	
-	<script>
-		
+	<script>		
 		function drawBoard(length, area)
 		{
 			var line = [], chessBoard = [], i = 0, j = 0, color;
 
-			while (i < length) {
-				
-				line[i] = drawLine(area);
-
+			while (i <= length) {
+								
+				if (i != length) {
+					line[i] = drawLine(area, i+1);
+				}  else {
+					line[i] = drawLine(area, null, true);
+				}
 				for (j = 0; j < length; j++) {
 					chessBoard[i] = [j];
 					chessBoard[i][j] = document.createElement('div');
-					drawSquare(chessBoard[i][j], getColor(i, j));
+					
+					if (i == length) {
+						color = null;
+					} else {
+						color = getColor(i, j);
+					}
+
+					drawSquare(chessBoard[i][j], color);
+
 					line[i].appendChild(chessBoard[i][j]);
 				}
 				i++;
 			}
 		}
 
-		function drawLine(area)
+		function drawLine(area, num, last = false)
 		{
 			var lineNode = document.createElement('div');
-			lineNode.className = 'line';
-			area.appendChild(lineNode);
+			if(!last) {
+				lineNode.className = 'line';
+			} else 
+				lineNode.className = 'abcLine';
+
+				area.appendChild(lineNode);
+				setNumberin(lineNode, num);
+
 			return lineNode;
 		}
 
-
 		function drawSquare(node, sqColor, mainClass = 'sqDefault')
 		{
-			node.className = mainClass;
-			node.classList.add(sqColor);
+			
+			if (sqColor != null) {
+				node.className = mainClass;
+				node.classList.add(sqColor);
+			} else {
+				node.className = 'adcBlock';
+			}
+		}
+
+		function setNumberin(lNode, num)
+		{
+			var lineNumber = document.createElement('div');
+			lineNumber.className = 'numBlock';
+			
+			if (num != null) {
+				lineNumber.innerHTML = num;
+			}
+
+			lNode.appendChild(lineNumber);
 		}
 
 		function getColor(i, j)
@@ -64,11 +92,8 @@
 			}
 		}
 
-
-
 		var chessArea = document.getElementById('chessArea');
 		drawBoard(8, chessArea);
-
 	</script>
 
 	
