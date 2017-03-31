@@ -19,9 +19,9 @@
 
 
 #chessDesk {
-	width: 70%;
+	width: 50%;
 	position: relative;
-	padding-top: 73%;
+	padding-top: 57%;
 }
 
 #chessArea{
@@ -62,10 +62,10 @@
 	padding-top: 4%;
 }
 
-.adcBlock {
+.abcBlock {
 	width: 12.2%;
 	height: 100%;
-	
+	text-align: center;	
 	float: left;
 }
 
@@ -79,9 +79,66 @@
 
 
 .black {
-	background-color: #000;
+	background-color: #8B4513;
 }
 
 .white {
 	background-color: #fff;	
+}
+
+.chess_spr {
+	height: inherit;
+	/*width: inherit;*/
+	background: url(../img/chess-pieces-spr.png);
+	background-repeat: no-repeat;
+	background-size: 550%;
+	z-index: 100;
+}
+
+.black_rook {
+	background-position: -1% 13%;
+}
+
+.black_horse {
+	background-position: 82% 13%;
+}
+
+.black_elephant {
+	background-position: 20% 13%;
+}
+
+.black_queen {
+	background-position: 40.5% 13%;
+}
+
+.black_king {
+	background-position: 60.9% 13%;
+}
+
+.black_pown {
+	background-position: 102% 13%;
+}
+
+.white_rook {
+	background-position: -1% 84%;
+}
+
+.white_horse {
+	background-position: 82% 84%;
+}
+
+.white_elephant {
+	background-position: 20% 84%;
+}
+
+.white_queen {
+	background-position: 40.5% 84%;
+}
+
+.white_king {
+	background-position: 60.9% 84%;
+}
+
+.white_pown {
+	background-position: 102% 84%;
 }
