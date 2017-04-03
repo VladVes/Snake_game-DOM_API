@@ -11,207 +11,26 @@
 
 <body>
 	<div  class="maincontainer">
-		<div id="chessDesk" class="centering">
-			<div id="chessArea"></div>
-			<!-- <div class="chess_spr"></div> -->
-		</div>
+		
 		
 	</div>
 	
 	
 	<script>		
-		function drawBoard(length, area)
-		{
-			var line = [], chessBoard = [], i = 0, j = 0, color, letter = null, num = length;
-			
-			while (i <= length) {	
-				if (i != length) {
-					line[i] = drawLine(area, num--);
-				}  else {
-					line[i] = drawLine(area, null, true);
-				}
-
-				for (j = 0; j < length; j++) {
-					chessBoard[i] = [j];
-					chessBoard[i][j] = document.createElement('div');
-					
-					if (i == length) {
-						color = null;
-						letter = getLetter(j);
-					} else {
-						color = getColor(i, j);
-					}
-
-					drawSquare(chessBoard[i][j], color, 'sqDefault', letter);
-
-					line[i].appendChild(chessBoard[i][j]);
-					placeFigure(chessBoard[i][j], i, j)
-				}
-				i++;
-			}
-		}
-
-		function drawLine(area, num, last = false)
-		{
-			var lineNode = document.createElement('div');
-			if(!last) {
-				lineNode.className = 'line';
-			} else {
-				lineNode.className = 'abcLine';
-			}
-
-				area.appendChild(lineNode);
-				setNumberin(lineNode, num);
-
-			return lineNode;
-		}
-
-		function drawSquare(node, sqColor, mainClass, letter = null)
-		{
-			
-			if (sqColor != null) {
-				node.className = mainClass;
-				node.classList.add(sqColor);
-			} else {
-				node.className = 'abcBlock';
-				if(letter != null) {
-					node.innerHTML = letter;
-				}
-			}
-		}
-
-		function setNumberin(lNode, num)
-		{
-			var lineNumber = document.createElement('div');
-			lineNumber.className = 'numBlock';
-			
-			if (num != null) {
-				lineNumber.innerHTML = num;
-			}
-
-			lNode.appendChild(lineNumber);
-		}
-
-		function getLetter(num)
-		{
-			var abc = 'abcdefghijklmnopqrstuvwxyz';
-			return abc[num];
-		}
-
-		function getColor(i, j)
-		{
-			if ((i % 2 == 0 && j % 2 == 0) || (i % 2 == 1 && j % 2 == 1)) {
-				return 'white';
-			} else {
-				return 'black';
-			}
-		}
-
-
-		function placeFigure(chessBoard, line, square)
-		{
-			var type;
-			if (line == 0) {
-				switch (square) {
-					case 0:
-						type = 'black_rook';
-						break;
-					case 1:
-						type = 'black_horse';
-						break;
-					case 2:
-						type = 'black_elephant';
-						break;
-					case 3:
-						type = 'black_queen';
-						break;
-					case 4:
-						type = 'black_king';
-						break;
-					case 5:
-						type = 'black_elephant';
-						break;	
-					case 6:
-						type = 'black_horse';
-						break;
-					case 7:
-						type = 'black_rook';
-						break;
-					default: 
-						type = false;
-				}
-				
-			}
-			if (line == 1) {
-				type = 'black_pown';
-			}
-			
-			if (line == 7) {
-				switch (square) {
-					case 0:
-						type = 'white_rook';
-						break;
-					case 1:
-						type = 'white_horse';
-						break;
-					case 2:
-						type = 'white_elephant';
-						break;
-					case 3:
-						type = 'white_queen';
-						break;
-					case 4:
-						type = 'white_king';
-						break;
-					case 5:
-						type = 'white_elephant';
-						break;	
-					case 6:
-						type = 'white_horse';
-						break;
-					case 7:
-						type = 'white_rook';
-						break;
-					default: 
-						type = false;
-				}
-				
-			}
-			if (line == 6) {
-				type = 'white_pown';
-			}
-
-			if (type) {
-					
-					chessBoard.appendChild(createFigure('chess_spr', type));
-				}
-		}
-
-		function createFigure(baseC, figureC)
-		{
-			 if (figureC) {
-				 var f;
-
-				 f = document.createElement('div');
-				 f.className = baseC;
-				 f.classList.add(figureC);
-
-				 return f;
-
-			} else return null;
-		}
+		console.time('scriptTime');
 
 		function testProcessor()
 		{
 			console.log('The page has been loaded!');
 		}
 
-		console.time('start');
-		var chessArea = document.getElementById('chessArea');
-		drawBoard(8, chessArea);
-		console.timeEnd('start');
+	
+		
+
+		
 
 		window.onload = testProcessor();
+		console.timeEnd('scriptTime');
 
 	</script>
 </body>
