@@ -18,7 +18,7 @@
 .maincontainer {
 	width: 100%;
 	height: 100vh;
-	background: linear-gradient(131deg, #889F9E, #ffffff);
+	background: linear-gradient(131deg, #27252C, #ffffff);
 }
 
 .gallery {
@@ -61,6 +61,10 @@
 	top: 5px;
 }
 
+.small_img figure figcaption {
+	padding-top: 20px;
+}
+
 .big_img {
 	width: 100%;
 	height: 100%;
@@ -70,10 +74,14 @@
 .bigPhoto {
 	width: 70%;
 	height: 50vh;
-	border: 1px solid #3D3354;
+	/* border: 1px solid #3D3354; */
 	margin-top: 5%;
 	background: linear-gradient(113deg, #E4E0EF, #ffffff);
 	box-shadow: 7px 5px 6px #3D3354;
 	border-radius: 4%;
 }
 
+.cart {
+	clear: both;
+	width: 80%;
+}
