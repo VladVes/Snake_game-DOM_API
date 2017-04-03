@@ -201,12 +201,18 @@
 			} else return null;
 		}
 
+		function testProcessor()
+		{
+			console.log('The page has been loaded!');
+		}
+
 		console.time('start');
 		var chessArea = document.getElementById('chessArea');
 		drawBoard(8, chessArea);
 		console.timeEnd('start');
-	</script>
 
-	
+		window.onload = testProcessor();
+
+	</script>
 </body>
 </html>
