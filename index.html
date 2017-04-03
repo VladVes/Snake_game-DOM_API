@@ -202,8 +202,10 @@
 			} else return null;
 		}
 
+		console.time('start');
 		var chessArea = document.getElementById('chessArea');
 		drawBoard(8, chessArea);
+		console.timeEnd('start');
 	</script>
 
 	
