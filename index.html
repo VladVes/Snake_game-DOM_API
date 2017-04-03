@@ -11,6 +11,40 @@
 
 <body>
 	<div  class="maincontainer">
+		<section class="gallery centering">
+			<div id="photoArea" class="bigPhoto centering">
+				
+			</div>
+
+
+			<div class="small_img">
+				<figure calss="small_img">
+					<img src="img/lamborgini.jpg" alt="lamborgini">
+					<figcaption>Lamborgini</figcaption>
+				</figure>
+			</div>
+			<div class="small_img">
+				<figure calss="small_img">
+					<img src="img/dodge.jpg" alt="Dodge">
+					<figcaption>Dodge</figcaption>
+				</figure>
+			</div>
+			<div class="small_img">
+				<figure calss="small_img">
+					<img src="img/ferrari.jpg" alt="ferrari">
+					<figcaption>Ferrari</figcaption>
+				</figure>
+			</div>
+			<div class="small_img">
+				<figure>
+					<img src="img/jaguar.jpg" alt="jaguar">
+					<figcaption>jaguar</figcaption>
+				</figure>
+			</div>
+
+
+			
+		</section>
 		
 		
 	</div>
@@ -24,12 +58,38 @@
 			console.log('The page has been loaded!');
 		}
 
+		function showPhoto(event) {
+			
+			console.log('showPhoto', event);
+			photoArea = document.getElementById('photoArea');
+			photoArea.innerHTML = '';
+
+			event.stopPropagation();
+
+			var target = event.target;
+			var newImg = new Image();
+			newImg.src = target.src;
+			newImg.className = 'big_img';
+
+			photoArea.appendChild(newImg);
+		}
+
+		function showError(event) {
+			alert('picture not found!');
+		}
+		
+
+		window.onload = function() {
+			var img = document.querySelectorAll('.small_img figure img');
+			for (var i = 0; i < img.length; i++) {
+				img[i].onclic = addEventListener('click', showPhoto);
+				img[i].onerror = addEventListener('error', showError);
+
+			}
+		}
 	
-		
 
-		
-
-		window.onload = testProcessor();
+		//window.onload = testProcessor();
 		console.timeEnd('scriptTime');
 
 	</script>
