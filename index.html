@@ -15,43 +15,43 @@
 			<div id="photoArea" class="bigPhoto centering">
 				
 			</div>
-
-
 			<div class="small_img">
-				<figure calss="small_img">
+				<figure>
 					<img src="img/lamborgini.jpg" alt="lamborgini">
-					<figcaption>Lamborgini 500.000$</figcaption>
+					<figcaption>Lamborgini <i>500.000</i>$</figcaption>
 				</figure>
 			</div>
-			<div class="small_img">
-				<figure calss="small_img">
+			<div Class="small_img">
+				<figure>
 					<img src="img/dodge.jpg" alt="Dodge">
-					<figcaption>Dodge 250.000$</figcaption>
+					<figcaption>Dodge <i>250.000</i>$</figcaption>
 				</figure>
 			</div>
 			<div class="small_img">
-				<figure calss="small_img">
+				<figure>
 					<img src="img/ferrari.jpg" alt="ferrari">
-					<figcaption>Ferrari 300.000$</figcaption>
+					<figcaption>Ferrari <i>300.000</i>$</figcaption>
 				</figure>
 			</div>
 			<div class="small_img">
 				<figure>
 					<img src="img/jaguar.jpg" alt="jaguar">
-					<figcaption>jaguar 320.000$</figcaption>
+					<figcaption>jaguar <i>320.000</i>$</figcaption>
 				</figure>
 			</div>
-			
-			<div class="cart centering">
+			<div id="cart" class="centering">
 				<h1>Cart: </h1>
+				<table id="cartTable" width="100%">
+				<tr>
+					<td>№</td><td>Name</td><td>Price</td><td>Quantity</td><td>Totall</td>
+				</tr>
+				<tr>
+					<td colspan="3"></td><td>Summ:</td>
+				</tr>
+					
+				</table>
 			</div>
-
-
 		</section>
-		
-
-		
-		
 	</div>
 	
 	
@@ -62,10 +62,11 @@
 		{
 			console.log('The page has been loaded!');
 		}
+		var productNum = 0, productQuantity = 0, cart = [], cart_i = 0;
 
-		function showPhoto(event) {
+		function actionProduct(event) {
 			
-			console.log('showPhoto', event);
+			//console.log('showProduct');
 
 			photoArea = document.getElementById('photoArea');
 			photoArea.innerHTML = '';
@@ -74,23 +75,74 @@
 
 			var target = event.target;
 			var newImg = new Image();
+
 			newImg.src = target.src;
 			newImg.className = 'big_img';
 
 			photoArea.appendChild(newImg);
+
+			addToCart(event);
 		}
 
-		function showError(event) {
+
+		function addToCart(event)
+		{
+			//console.log(event);
+
+			var figcaption = event.target.nextElementSibling;
+			var prodParams = [];
+
+			//console.log(figcaption.childNodes);
+			//var cart = document.getElementById('cart');
+
+			prodParams[0] = productNum++;
+			prodParams[1] = figcaption.childNodes[0].textContent;
+			prodParams[2] = figcaption.childNodes[1].innerHTML + '$';
+			prodParams[3] = 1;
+			prodParams[4] = Number(figcaption.childNodes[1].innerHTML) * prodParams[3] + '.000$';
+			
+		
+			var table = document.getElementById('cartTable');
+
+			
+			
+			
+						
+			for (var i = 0; i <= cart.length; i++) {
+				if (cart[i] == prodParams[1]) {
+					tr = document.getElementById(prodParams[1]);
+					console.log('if', tr);
+					Number(tr.children[3].innerHTML) += 1;
+					tr.children[4].innerHTML = Number(tr.children[4].innerHTML) * prodParams[4];
+
+
+				} else {
+					tr = document.createElement('tr');
+					console.log('else', tr);
+					for (var i = 0; i < prodParams.length; i++) {
+						td = document.createElement('td');
+						td.innerHTML = prodParams[i];
+						tr.appendChild(td);			
+					}			
+					tr.id = prodParams[1];
+					cart[cart_i++] = prodParams[1];
+					table.appendChild(tr);
+				}
+			}
+
+		}
+
+
+		function showError(event)
+		{
 			alert('picture not found!');
 		}
-		
 
 		window.onload = function() {
 			var img = document.querySelectorAll('.small_img figure img');
 			for (var i = 0; i < img.length; i++) {
-				img[i].onclic = addEventListener('click', showPhoto);
+				img[i].onclic = addEventListener('click', actionProduct);
 				img[i].onerror = addEventListener('error', showError);
-
 			}
 		}
 	
