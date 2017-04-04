@@ -11,201 +11,145 @@
 
 <body>
 	<div  class="maincontainer">
-		<div id="chessDesk" class="centering">
-			<div id="chessArea"></div>
-			<!-- <div class="chess_spr"></div> -->
-		</div>
-		
+		<section class="gallery centering">
+			<div id="photoArea" class="bigPhoto centering">
+				
+			</div>
+			<div class="small_img">
+				<figure>
+					<img src="img/lamborgini.jpg" alt="lamborgini">
+					<figcaption>Lamborgini <i>500.000</i>$</figcaption>
+				</figure>
+			</div>
+			<div Class="small_img">
+				<figure>
+					<img src="img/dodge.jpg" alt="Dodge">
+					<figcaption>Dodge <i>250.000</i>$</figcaption>
+				</figure>
+			</div>
+			<div class="small_img">
+				<figure>
+					<img src="img/ferrari.jpg" alt="ferrari">
+					<figcaption>Ferrari <i>300.000</i>$</figcaption>
+				</figure>
+			</div>
+			<div class="small_img">
+				<figure>
+					<img src="img/jaguar.jpg" alt="jaguar">
+					<figcaption>jaguar <i>320.000</i>$</figcaption>
+				</figure>
+			</div>
+			<div id="cart" class="centering">
+				<h1>Cart: </h1>
+				<table id="cartTable" width="100%">
+				<tr>
+					<td>№</td><td>Name</td><td>Price</td><td>Quantity</td><td>Totall</td>
+				</tr>
+				<tr>
+					<td colspan="3"></td><td>Summ:</td>
+				</tr>
+					
+				</table>
+			</div>
+		</section>
 	</div>
 	
 	
 	<script>		
-		function drawBoard(length, area)
+		console.time('scriptTime');
+
+		function testProcessor()
 		{
-			var line = [], chessBoard = [], i = 0, j = 0, color, letter = null, num = length;
+			console.log('The page has been loaded!');
+		}
+		var productNum = 0, productQuantity = 0, cart = [], cart_i = 0;
+
+		function actionProduct(event) {
 			
-			while (i <= length) {	
-				if (i != length) {
-					line[i] = drawLine(area, num--);
-				}  else {
-					line[i] = drawLine(area, null, true);
-				}
+			//console.log('showProduct');
 
-				for (j = 0; j < length; j++) {
-					chessBoard[i] = [j];
-					chessBoard[i][j] = document.createElement('div');
-					
-					if (i == length) {
-						color = null;
-						letter = getLetter(j);
-					} else {
-						color = getColor(i, j);
-					}
+			photoArea = document.getElementById('photoArea');
+			photoArea.innerHTML = '';
 
-					drawSquare(chessBoard[i][j], color, 'sqDefault', letter);
+			event.stopPropagation();
 
-					line[i].appendChild(chessBoard[i][j]);
-					placeFigure(chessBoard[i][j], i, j)
-				}
-				i++;
-			}
+			var target = event.target;
+			var newImg = new Image();
+
+			newImg.src = target.src;
+			newImg.className = 'big_img';
+
+			photoArea.appendChild(newImg);
+
+			addToCart(event);
+		}
+
+
+		function addToCart(event)
+		{
+			//console.log(event);
+
+			var figcaption = event.target.nextElementSibling;
+			var prodParams = [];
+
+			//console.log(figcaption.childNodes);
+			//var cart = document.getElementById('cart');
+
+			prodParams[0] = productNum++;
+			prodParams[1] = figcaption.childNodes[0].textContent;
+			prodParams[2] = figcaption.childNodes[1].innerHTML + '$';
+			prodParams[3] = 1;
+			prodParams[4] = Number(figcaption.childNodes[1].innerHTML) * prodParams[3] + '.000$';
+			
 		
-		}
+			var table = document.getElementById('cartTable');
 
-		function drawLine(area, num, last = false)
-		{
-			var lineNode = document.createElement('div');
-			if(!last) {
-				lineNode.className = 'line';
-			} else {
-				lineNode.className = 'abcLine';
-			}
-
-				area.appendChild(lineNode);
-				setNumberin(lineNode, num);
-
-			return lineNode;
-		}
-
-		function drawSquare(node, sqColor, mainClass, letter = null)
-		{
 			
-			if (sqColor != null) {
-				node.className = mainClass;
-				node.classList.add(sqColor);
-			} else {
-				node.className = 'abcBlock';
-				if(letter != null) {
-					node.innerHTML = letter;
-				}
-			}
-		}
-
-		function setNumberin(lNode, num)
-		{
-			var lineNumber = document.createElement('div');
-			lineNumber.className = 'numBlock';
 			
-			if (num != null) {
-				lineNumber.innerHTML = num;
-			}
-
-			lNode.appendChild(lineNumber);
-		}
-
-		function getLetter(num)
-		{
-			var abc = 'abcdefghijklmnopqrstuvwxyz';
-			return abc[num];
-		}
-
-		function getColor(i, j)
-		{
-			if ((i % 2 == 0 && j % 2 == 0) || (i % 2 == 1 && j % 2 == 1)) {
-				return 'white';
-			} else {
-				return 'black';
-			}
-		}
-
-
-		function placeFigure(chessBoard, line, square)
-		{
-			var type;
-			if (line == 0) {
-				switch (square) {
-					case 0:
-						type = 'black_rook';
-						break;
-					case 1:
-						type = 'black_horse';
-						break;
-					case 2:
-						type = 'black_elephant';
-						break;
-					case 3:
-						type = 'black_queen';
-						break;
-					case 4:
-						type = 'black_king';
-						break;
-					case 5:
-						type = 'black_elephant';
-						break;	
-					case 6:
-						type = 'black_horse';
-						break;
-					case 7:
-						type = 'black_rook';
-						break;
-					default: 
-						type = false;
-				}
-				
-			}
-			if (line == 1) {
-				type = 'black_pown';
-			}
 			
-			if (line == 7) {
-				switch (square) {
-					case 0:
-						type = 'white_rook';
-						break;
-					case 1:
-						type = 'white_horse';
-						break;
-					case 2:
-						type = 'white_elephant';
-						break;
-					case 3:
-						type = 'white_queen';
-						break;
-					case 4:
-						type = 'white_king';
-						break;
-					case 5:
-						type = 'white_elephant';
-						break;	
-					case 6:
-						type = 'white_horse';
-						break;
-					case 7:
-						type = 'white_rook';
-						break;
-					default: 
-						type = false;
+						
+			for (var i = 0; i <= cart.length; i++) {
+				if (cart[i] == prodParams[1]) {
+					tr = document.getElementById(prodParams[1]);
+					console.log('if', tr);
+					Number(tr.children[3].innerHTML) += 1;
+					tr.children[4].innerHTML = Number(tr.children[4].innerHTML) * prodParams[4];
+
+
+				} else {
+					tr = document.createElement('tr');
+					console.log('else', tr);
+					for (var i = 0; i < prodParams.length; i++) {
+						td = document.createElement('td');
+						td.innerHTML = prodParams[i];
+						tr.appendChild(td);			
+					}			
+					tr.id = prodParams[1];
+					cart[cart_i++] = prodParams[1];
+					table.appendChild(tr);
 				}
-				
-			}
-			if (line == 6) {
-				type = 'white_pown';
 			}
 
-			if (type) {
-					
-					chessBoard.appendChild(createFigure('chess_spr', type));
-				}
 		}
 
-		function createFigure(baseC, figureC)
+
+		function showError(event)
 		{
-			 if (figureC) {
-				 var f;
-
-				 f = document.createElement('div');
-				 f.className = baseC;
-				 f.classList.add(figureC);
-
-				 return f;
-
-			} else return null;
+			alert('picture not found!');
 		}
 
-		var chessArea = document.getElementById('chessArea');
-		drawBoard(8, chessArea);
-	</script>
-
+		window.onload = function() {
+			var img = document.querySelectorAll('.small_img figure img');
+			for (var i = 0; i < img.length; i++) {
+				img[i].onclic = addEventListener('click', actionProduct);
+				img[i].onerror = addEventListener('error', showError);
+			}
+		}
 	
+
+		//window.onload = testProcessor();
+		console.timeEnd('scriptTime');
+
+	</script>
 </body>
 </html>
