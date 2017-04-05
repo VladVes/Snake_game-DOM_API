@@ -31,8 +31,7 @@ function bildGameFild()
 	for (var i = 0; i < FILD_SIZE_X; i++) {
 		var row = document.createElement('tr');
 		row.classList.add('game-table-row');
-		row.classList.add('row-' + i);
-
+		
 		for (var j = 0; j < FILD_SIZE_Y; j++) {
 			var cell = document.createElement('td');
 			cell.classList.add('game-table-cell');
@@ -173,7 +172,7 @@ function finishGame()
 {
 	clearInterval(snakeTimer);
 	isGameRunning = false;
-	alert('GAME OVER');
+	alert('Anton is OVER!');
 }
 
 
