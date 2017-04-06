@@ -2,7 +2,8 @@
 	margin: 0px;
 	padding: 0px;
 	overflow: hidden;
-	transition: all 1s ease;
+	/*transition: all 1s ease;*/
+
 
 }
 
@@ -22,9 +23,19 @@ body {
 
 #snake-field{
 	width: 50%;
-	height: 80vh;
+	height: 78vh;
 	background: black;
 	border: 1px solid green;
+}
+
+.game-name {
+	color: red;
+	text-align: center;
+}
+
+.score {
+	color: blue;
+	text-align: center;
 }
 
 .buttons {
@@ -34,7 +45,7 @@ body {
 }
 
 #snake-start, #snake-renew {
-	width: 150px;
+	width: 70px;
 	padding: 15px;
 	color: white;
 	background: green;
@@ -61,10 +72,20 @@ td.game-table-cell {
 .snakeUnit {
 	background: url(../img/snake.png) no-repeat center center;
 	background-size: cover;
+	transition: all 1s ease;
+
 	/*background: white;*/
 }
 
 .foodUnit {
 	background: url(../img/burger.png) no-repeat center center;
 	background-size: cover;
+	transition: all 1s ease;
+}
+
+.obstacleUnit {
+	color: red;
+	content: '*';
+	background-color: red;
+
 }
