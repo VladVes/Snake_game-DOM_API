@@ -7,27 +7,48 @@ var menuItems = [
 	{title: 'Contacts', href: '#'}
 	];
 
-console.log(items);
+//console.log(menuItems);
 
-var MainMenu = funtion(items[])
+function MainMenu(items)
 {
-	this.parentElementId;
+	this.parentElementId; //outer container
 	
 	var self = this;
 
-	function createMenuItems(items[])
+	function createMenuItems(items)
 	{
-		
+		var li = [], a = [];
+		var ul = document.createElement('ul');
+
 		for (var i = 0; i < items.length; i++)
 		{
-			for (prop in items[i])
+			li[i] = document.createElement('li');
+			a[i] = document.createElement('a');
+			for (var prop in items[i])
 			{
-				console.log(prop);
+				switch (prop) {	
+					case 'title': 
+						a[i].innerHTML = items[i][prop];
+						break;
+					case 'href':
+						a[i].setAttribute('href', items[i][prop]);
+						break;				
+				}
+			li[i].appendChild(a[i]);
+			ul.appendChild(li[i]);
 			}
+		//console.log(li);
 		}
+		return ul;
+
 	}
 
-	createMenuItems(items[]);
+	function ()
+
+
+
+
+	createMenuItems(items);
 
 }
 
