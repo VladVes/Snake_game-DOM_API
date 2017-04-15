@@ -2,10 +2,42 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<script scr="script.js" defer></script>
+	<!-- <script scr="script.js" defer></script> -->
 	<title>Document</title>
 </head>
 <body>
 	
+	<script>	
+		console.log('It works!');
+		var xhr;
+
+		if(window.XMLHttpRequest) {
+			xhr = new XMLHttpRequest; 
+		} else {
+			xhr = new ActiveXObject('Microsoft.XMLHTTP');
+		}
+
+		xhr.overrideMimeType('application/json');
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == XMLHttpRequest.DONE) {
+				if(xhr.status == 200) {
+					console.log(xhr.responseText);
+
+				}
+			}
+
+		}
+
+		xhr.open('get', 'https://github.com', true)
+		xhr.timeout = 15000; 
+
+		xhr.ontimeout = function() { 
+			console.log('Страница обновляется дольше обычного...');
+		}
+
+		xhr.send();
+
+		
+	</script>
 </body>
 </html>
