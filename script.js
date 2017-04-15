@@ -1,4 +1,4 @@
-console.log('Start!');
+console.time('start');
 
 var menuItems = [
 	{title: 'Main', href: '#'},
@@ -9,10 +9,14 @@ var menuItems = [
 
 //console.log(menuItems);
 
-function MainMenu(items)
+function MainMenu(items, parentElementId)
 {
-	this.parentElementId; //outer container
-	
+	this.id = parentElementId; //outer container
+	this.outerContClass; //parent container class
+
+	this.outerContainer = document.getElementById(parentElementId);
+	this.outerContClass = this.outerContainer.className;
+
 	var self = this;
 
 	function createMenuItems(items)
@@ -40,16 +44,23 @@ function MainMenu(items)
 		//console.log(li);
 		}
 		return ul;
-
 	}
 
-	function ()
-
-
-
-
-	createMenuItems(items);
-
+	this.render = function()
+	{
+		
+		this.outerContainer.appendChild(createMenuItems(items));
+	}
 }
 
-var menu = new MainMenu(menuItems);
+var menu = new MainMenu(menuItems, 'navi');
+console.log('menu parent container class: ' + menu.outerContClass);
+console.log('menu id: ' + menu.id);
+
+menu.render();
+
+
+
+
+
+console.timeEnd('start');
