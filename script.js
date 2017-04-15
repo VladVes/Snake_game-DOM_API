@@ -1,103 +1,75 @@
-//базовый класс 
-function Machine(consumption) 
-{
-	this._consumption;
-	this._enabled = false; //машина включена или выключена
-	//_enable - принято перед внутренними свойствами класса (типа приватными) 
-	//ставить подчеркивание говорящее о том, что это свойстов защищено
+//специальный класс для работы с AJAX 
+//XMLHttpRequest 
+console.log('It works!');
 
-	this.enanble = function() {//включить машину
-		this._enabled = true;
-	}
+//проверка поддержки
 
-	this.disable = function() {//выключить машину
-		this._enabled = false;
-	}
+var xhr;
 
-	//инетерсный варриант переключения!
-	this.toggle = function() {
-		this._ensbled = !this._ensbled;
-	}
+if(window.XMLHttpRequest) { //если браузер нормальный то класс поддерживается
+	xhr = new XMLHttpRequest; 
+} else {
+	xhr = new ActiveXObject('Microsoft.XMLHTTP'); // если старый експлорер то создаем объект этим способом
 }
 
+//некоторые верисии моззилы могут не работать с ответом от сервера если в нем нет заголовка MimeType
+//это проблема бэкенда, но можно решить и средствами js переопределив заголовок и указав тип содержимого:
+//xhr.overrideMineType('application/json') //переопределение 
 
 
-function Car(consumption) 
-{
-	//реализация НЕАСЛЕДОВАНИЯ в ES5 !!!
-	//"вложенный конструктор"
-	Machine.apply(this, arguments); //при вызове фнкуции-конструктороа Machin с переданным контекстом объекта Car
-	//получается, что в this записываются методы и свойства из Machine!!!
-	//
-	//arguments - массив всех аргументов которые были переданы в верхнюю функцию
 
-	this.fuelAmout = 0; // публичное свойство!
-	var someVar; //приватное свойство
-	var FULL_CAPACITY = 100; //приватное свойство-константа в ES5
+//ОТПРАВКА ЗАПРОСА НА СЕРВЕР
 
-	var self = this; //СОХРАНЯЕМ КОНТЕКСТ В ЗАМЫКАНИИ - VAR self - локальные свойства которые
-	//попадают в замыкание!!!
-
-	console.log('New car has been build with fuel consumption = ' + self._consumption);
-
-	//приватные методы
-	function getEmptyTime(speed)
-	{
-		
-		return ((self.fuelAmount / self._consumption) * FULL_CAPACITY) / speed;
-	}
+xhr.open('get', 'http://www.github.com', true)
+// - метод передачи запроса
+//- URL
+//- true - асинхронный (работает как бы в фоне, т.е. страница не будет ждать когда придет ответ, она будет
+//функционировать как раньше),
+// false - синхронный - "заблокироует" работу страницы до тех пор пока не придет ответ - АНТИПАТТЕРН, 
+// не рекомендуется использовать!
 
 
-	function onEmpty() 
-	{
-		console.log('fuel is over!');
-	}
+xhr.timeout = 15000; //ждем ответа 15с после чего будет выдана ошибка
+
+xhr.ontimeout = function() { //обработчик вызываемый в случае наступления таймаута
+	console.log('Страница обновляется дольше обычного...');
+}
+
+//метод для отправки запроса
+// xhr.send('param1=value1&param2=value2'); //в качестве аргуметов может передаватся строка запроса понимаемая 
+//бекэндом
+//В данном примере параметров нет, получем просто главную страницу с гитхаба
+xhr.send();
 
 
-	//публичный метод
-	this.drive = function(speed) 
-	{
-		if(self._enabled) {
-		setTimeout(onEmpty, getEmptyTime(speed)); 
-		//потеря контекста можно решить так getEmptyTime.call(this, speed) this т.к. в этой функции ("drive")
-		//контекст известен поотму можно передать напрямую this
 
-		//можно также getEmptyTime.applay(this, [speed])
-		//
+//когда приходят данные их нужно как то обработать,
+// назначение обработчика: (когда как-то меняется статус AJAX запроса... (этих статусов несколько))
+xhr.onreadystatechange = function() {
 
-		//Можно даже с помощью bind зафиксировать контекст написав конструкцию:
-		/*
-		
-		function getEmptyTime(speed){
-		return ((this.fuelAmount / consumption) * FULL_CAPACITY) / speed;}.bind(this); //!!!
+	//свойство содержащее состояния объекта XMLHttpRequest
+	
+	//xhr.readyState = 0; //когда только создали
+	//xhr.readyState = 1; //когда осуществляется загрузка
+	//xhr.readyState = 2; //когда запрос принят
+	//xhr.readyState = 3; //когда обмен данными осуществляется
+	//xhr.readyState = 4; //когда запрос выполене
 
-		*/
+	//в соотвествии со статусум производятся нужные действия
+	//к примеру когда пришел ответ от сервира проверяем
+	//if(xhr.readyState == 4); //когда запрос выполенен	
+	//но для этого существует спец константа и правильнее использовать её:
+	if(xhr.readyState == XMLHttpRequest.DONE) {
+		if(xhr.status == 200) {//дополнительно проверяется код ошибки возвращаемый сервером
+			//200  означает что все хорошо //коды ответов веб сервера ..
 
-		//НО ОБЫЧНО КОНТЕКСТ ПРОСТО СРАЗУ СОХРАНЯЮТ В ЗАМЫКАНИИ!!! var self = this;
-		//И ДАЛЕЕ ВМЕСТО this ИСПОЛЬЗУЕТСЯ self
+//ПОЛУЧЕНИЕ ОТВЕТА 
+			//xhr.responseText //ответ в виде строки
+			//xht.responseXML //в формате xml (если сервер отправляет в xml)
+
+			console.log(xhr.responseText);
+
 		}
-
-	//переопределение или доплнение методов родителя
-	
-	var parentEnable = self.enable;// сохраняем исходный родительский метод в замыкании Car
-	
-	self.enable = function() // дополняем или переопределяем фнкуцию
-	{
-		self.fuelAmout--; //выполняем новую часть функции
- 
-		parentEnable.call(self); //вызываем старую часть функции с передачей контекста т.к. сама 
-		//родительская функция использует указатель this внутри себя!
-	}
-
-
-
-
 	}
 
 }
-
-var ladaKalina = new Car(9);
-ladaKalina.fuelAmout = 30;
-ladaKalina.enabled();
-ladaKalind.drive(90);
-
