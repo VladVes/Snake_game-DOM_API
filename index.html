@@ -3,40 +3,119 @@
 <head>
 	<meta charset="UTF-8">
 	<!-- <script scr="script.js" defer></script> -->
-	<title>Document</title>
+	<link rel="stylesheet" href="css/main.css">
+	<title>JS2 - l2</title>
 </head>
 <body>
+	<main>
+		<section>
+			<h1>JS - 2 hw - 2</h1>
+			<div>
+				<form action="http://192.168.88.101/validator/validator.php" method="POST" name="validatorform" id="vForm">
+				<fieldset>	
+					<legend>Validation</legend>
+					<label for="Username">Name: </label>
+					<input id="Username" type="text"><br>
+					<label for="Password">Password: </label>
+					<input id="Password" type="password"><br>
+					<label for="Email">Email: </label>
+					<input id="Email" type="email"><br>
+					<label for="Gender">Gender: </label>
+					<input id="Gender" type="text"><br>
+					<label for="Credit_card">Credit card: </label>
+					<input id="Credit_card" type="text"><br>
+					<label for="Bio">Bio: </label>
+					<input id="Bio" type="text"><br>
+
+					<input type="submit" id="send" value="Send">
+
+				</fieldset>
+				</form>
+			</div>
+		</section>
+	</main>
+
 	
 	<script>	
-		console.log('It works!');
-		var xhr;
+		console.time('script time');
+		
+		function main()
+		{
+			function checkData(event)
+			{
+				var data = {};
+				event.stopPropagation();
+				event.preventDefault();
 
-		if(window.XMLHttpRequest) {
-			xhr = new XMLHttpRequest; 
-		} else {
-			xhr = new ActiveXObject('Microsoft.XMLHTTP');
-		}
+				//console.log(event);
 
-		xhr.overrideMimeType('application/json');
-		xhr.onreadystatechange = function() {
-			if(xhr.readyState == XMLHttpRequest.DONE) {
-				if(xhr.status == 200) {
-					console.log(xhr.responseText);
+				var submit = event.target;
+				
+				data.username = document.getElementById('Username').value;
+				data.password = document.getElementById('Password').value;
+				data.email = document.getElementById('Email').value;
+				data.gender = document.getElementById('Gender').value;
+				data.credit_card = document.getElementById('Credit_card').value;
+				data.bio = document.getElementById('Bio').value;
 
-				}
+				//console.log(data);
+
+				validate(data);
+
 			}
 
+			function validate(data)
+			{
+				var jData = JSON.stringify(data);
+
+				var xhr;
+				if(window.XMLHttpRequest) {
+					xhr = new XMLHttpRequest;
+				} else {
+					xhr = new ActiveXObject('Micriosoft.XMLHTTP');
+				}
+
+				xhr.open('post', 'http://192.168.88.101/validator/validator.php', true);
+
+				xhr.timeout = 5000;
+				xhr.ontimeout = function() {
+					alert('Time is out. Something goes wrong... ');
+				}
+
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+				var dataStr = '';
+				for (prop in data) {
+					dataStr += prop + '=' + data[prop] + "&";
+				}
+
+				//console.log(dataStr);
+
+
+				//console.log(jData);
+				//xhr.send("username=Johnrambo&password=dddddd&email=phd@gmail.com&gender=m&credit_card=4556639300009235&bio=blabla&birth=2017-04-05");
+
+				//5210 8777 2216 6226
+
+				xhr.send(dataStr);
+				
+				xhr.onreadystatechange = function() {
+					if(xhr.readyState == XMLHttpRequest.DONE) {
+						if(xhr.status == 200) {
+							console.log(xhr.responseText);
+						}
+					}
+				}
+
+			}
+
+			var submit = document.getElementById('send');
+			//submit.onclick = addEventListener('click', validate);
+			submit.onclick = checkData;
 		}
 
-		xhr.open('get', 'https://github.com', true)
-		xhr.timeout = 15000; 
-
-		xhr.ontimeout = function() { 
-			console.log('Страница обновляется дольше обычного...');
-		}
-
-		xhr.send();
-
+		window.onload = main();
+		console.timeEnd('script time');
 		
 	</script>
 </body>
