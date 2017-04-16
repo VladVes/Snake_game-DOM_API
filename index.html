@@ -49,7 +49,7 @@
 
 				//console.log(event);
 
-				var submit = event.target;
+				//var submit = event.target;
 				
 				data.username = document.getElementById('Username').value;
 				data.password = document.getElementById('Password').value;
@@ -66,7 +66,7 @@
 
 			function validate(data)
 			{
-				var jData = JSON.stringify(data);
+				//var jData = JSON.stringify(data);
 
 				var xhr;
 				if(window.XMLHttpRequest) {
@@ -93,9 +93,8 @@
 
 
 				//console.log(jData);
-				//xhr.send("username=Johnrambo&password=dddddd&email=phd@gmail.com&gender=m&credit_card=4556639300009235&bio=blabla&birth=2017-04-05");
-
-				//5210 8777 2216 6226
+				
+				//xhr.send(jData);
 
 				xhr.send(dataStr);
 				
