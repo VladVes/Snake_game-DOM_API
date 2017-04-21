@@ -4,13 +4,17 @@
 	<meta charset="UTF-8">
 	<!-- <script scr="script.js" defer></script> -->
 	<link rel="stylesheet" href="css/main.css">
-	<title>JS2 - l2</title>
+	<title>JS2 - l3</title>
 </head>
 <body>
 	<main>
 		<section>
-			<h1>JS - 2 hw - 2</h1>
+			<h1>JS - 2 hw - 3 REGEXP</h1>
 			<div>
+			<div id="results" style="padding: 15px; box-sizing: border-box;">
+			<h3>Regular expression matches: </h3>
+				
+			</div>
 				<form action="http://192.168.88.101/validator/validator.php" method="POST" name="validatorform" id="vForm">
 				<fieldset>
 					<legend>Validation</legend>
@@ -41,15 +45,60 @@
 		
 		function main()
 		{
+			
+			//regular expression
+
+			var examples = [
+				'<section style="color: #A61300"><p style="color: #4B9500">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, <i style="color: #fff">deserunt </i>eius magni veniam distinctio cupiditate earum, dignissimos ipsum id facere voluptatem enim tempore, officiis eligendi corporis labore facilis, reprehenderit? Architecto?</p><div style="color: #6A48D7"></div></section> ',
+				'1.5 0 12. 123.4.',
+				'09:00, 21-30 333dd-22^33**17:46de33-1133d5:43'
+						];
+
+
+			function regExpTests(examples)
+			{
+				console.log(examples.length);
+
+				var i = 0, res = [];
+				while (i < examples.length) {
+					if(res[i] = examples[i].match(/#[0-9A-F]{3,6}/gi)) {
+						console.log(res[i].toString());
+						showRegExpResult('HTML color: ' + res[i].toString());
+					}
+					if(res[i] = examples[i].match(/([02468]+)\.?\1?/g)) {
+						console.log(res[i].toString());
+						showRegExpResult('Even numbers: ' + res[i].toString());
+  					}
+  					//find time formats - /[0-2](?(?<=2)[0-4]|[0-9])(:|-)[0-5][0-9]/g - In php (PRCE) case it would have worked. But not in javascrip, becasu js regexp doesn't support  conditions like this (?(?<=x)a|b)
+  					//
+  					if(res[i] = examples[i].match(/[0-2][0-9](:|-)[0-5][0-9]/g)) {
+						console.log(res[i].toString());
+						showRegExpResult('Time: ' + res[i].toString());
+  					}
+  					i++;
+
+				}
+			}
+
+			function showRegExpResult(result)
+			{
+				var resultNode = document.createElement('div');
+				resultNode.innerHTML = result;
+				document.getElementById('results').appendChild(resultNode);
+			}
+
+			regExpTests(examples);
+
+
+
+			//form 
+
 			function checkData(event)
 			{
 				var data = {};
-				event.stopPropagation();
-				event.preventDefault();
+				event.stopPropagation() = '';
+				event.preventDefault() = '';
 
-				//console.log(event);
-
-				//var submit = event.target;
 				
 				data.username = document.getElementById('Username').value;
 				data.password = document.getElementById('Password').value;
@@ -58,7 +107,7 @@
 				data.credit_card = document.getElementById('Credit_card').value;
 				data.bio = document.getElementById('Bio').value;
 
-				//console.log(data);
+			
 
 				validate(data);
 
@@ -88,13 +137,6 @@
 				for (prop in data) {
 					dataStr += prop + '=' + data[prop] + "&";
 				}
-
-				//console.log(dataStr);
-
-
-				//console.log(jData);
-				
-				//xhr.send(jData);
 
 				xhr.send(dataStr);
 				

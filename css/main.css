@@ -25,6 +25,8 @@ section {
 	background: linear-gradient(148deg, #0a4260, #2f35d9);
 }
 
+
+
 h1 {
 	padding-top: 30px;
 	text-align: center;
@@ -33,7 +35,8 @@ h1 {
 form {
 	font-weight: 700;
 	width: 70%;
-	margin: 7% auto;
+	margin: 0 auto;
+	margin-top: 8%;
 }
 
 form label {
@@ -70,8 +73,7 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover {
 	background: green;
-	color: #fff;
-	
+	color: #fff;	
 }
 
 
