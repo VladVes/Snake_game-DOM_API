@@ -4,7 +4,6 @@
 	overflow: hidden;
 	/*transition: all 1s ease;*/
 
-
 }
 
 body {
@@ -12,80 +11,82 @@ body {
 	min-width: 100%;
 }
 
-.aligner {
-	text-align: center;
-}
-
-.centering {
-	margin: 0px auto;
-}
-
-
-#snake-field{
-	width: 50%;
-	height: 78vh;
-	background: black;
-	border: 1px solid green;
-}
-
-.game-name {
-	color: red;
-	text-align: center;
-}
-
-.score {
-	color: blue;
-	text-align: center;
-}
-
-.buttons {
-	padding-top: 3%;
-	width: 30%;
-	height: 20vh;
-}
-
-#snake-start, #snake-renew {
-	width: 70px;
-	padding: 15px;
-	color: white;
-	background: green;
-	text-align: center;
-	cursor: pointer;
-	float: left;
-	margin-right: 10px;
-	cursor: pointer;
-}
-
-.game-table {
-	width: 100%;
+main {
 	height: 100%;
-	border-collapse: collapse;
+	width: 100%;
+	background: #0a4260
 }
 
-td.game-table-cell {
-	width: 15px;
-	height: 15px;
-	border: 1px dotted #eee;
-	border-collapse: collapse;
+section {
+	color: #fff;
+	width: 70%;
+	height: 100vh;
+	margin: 0 auto;
+	background: linear-gradient(148deg, #0a4260, #2f35d9);
 }
 
-.snakeUnit {
-	background: url(../img/snake.png) no-repeat center center;
-	background-size: cover;
-	transition: all 1s ease;
 
-	/*background: white;*/
+
+h1 {
+	padding-top: 30px;
+	text-align: center;
 }
 
-.foodUnit {
-	background: url(../img/burger.png) no-repeat center center;
-	background-size: cover;
-	transition: all 1s ease;
+form {
+	font-weight: 700;
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 8%;
 }
 
-.obstacleUnit {
-	color: red;
-	content: '*';
-	background-color: red;
+form label {
+	display: inline-block;
+	font-size: 20px;
+	width: 20%;
+	padding-top: 20px;
+	padding-left: 20px;
+	text-align: left;
+}
+
+form input {
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid black;
+	padding-top: 10px;
+	padding-left: 10px;
+	width: 50%;
+	font-size: 20px;
+	color: yellow;
+}
+
+form input[type="submit"] {
+	font-weight: 700;
+	font-size: 30px;
+	color: #0a4260;
+	width: 200px;
+	height: 70px;
+	padding: 0px;
+	margin-top: 30px;
+	margin-left: 30px;
+	margin-bottom: 20px;
+	background: #59baee;
+	cursor: pointer;
+}	
+
+form input[type="submit"]:hover {
+	background: green;
+	color: #fff;	
+}
+
+.match {
+	color: white;
+	background: rgba(0, 245, 16, 0.9);
 
 }
+
+.not-match {
+	color: white;
+	background-color: rgba(250, 2, 15, 0.9);
+}
+
+
