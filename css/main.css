@@ -55,6 +55,8 @@ form input {
 	padding-top: 10px;
 	padding-left: 10px;
 	width: 50%;
+	font-size: 20px;
+	color: yellow;
 }
 
 form input[type="submit"] {
@@ -76,5 +78,15 @@ form input[type="submit"]:hover {
 	color: #fff;	
 }
 
+.match {
+	color: white;
+	background: rgba(0, 245, 16, 0.9);
+
+}
+
+.not-match {
+	color: white;
+	background-color: rgba(250, 2, 15, 0.9);
+}
 
 
