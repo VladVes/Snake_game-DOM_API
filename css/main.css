@@ -1,92 +1,11 @@
-* {
-	margin: 0px;
-	padding: 0px;
-	overflow: hidden;
-	/*transition: all 1s ease;*/
-
+*{
+	margin: 0;
+	padding: 0;
 }
 
-body {
-	min-height: 100%;
-	min-width: 100%;
-}
-
-main {
-	height: 100%;
-	width: 100%;
-	background: #0a4260
-}
-
-section {
-	color: #fff;
-	width: 70%;
-	height: 100vh;
-	margin: 0 auto;
-	background: linear-gradient(148deg, #0a4260, #2f35d9);
-}
-
-
-
-h1 {
-	padding-top: 30px;
-	text-align: center;
-}
-
-form {
-	font-weight: 700;
-	width: 70%;
-	margin: 0 auto;
-	margin-top: 8%;
-}
-
-form label {
-	display: inline-block;
-	font-size: 20px;
-	width: 20%;
-	padding-top: 20px;
-	padding-left: 20px;
-	text-align: left;
-}
-
-form input {
-	background: transparent;
-	border: none;
-	border-bottom: 1px solid black;
-	padding-top: 10px;
-	padding-left: 10px;
-	width: 50%;
-	font-size: 20px;
-	color: yellow;
-}
-
-form input[type="submit"] {
-	font-weight: 700;
-	font-size: 30px;
-	color: #0a4260;
+.block {
+	background: black;
 	width: 200px;
-	height: 70px;
-	padding: 0px;
-	margin-top: 30px;
-	margin-left: 30px;
-	margin-bottom: 20px;
-	background: #59baee;
-	cursor: pointer;
-}	
-
-form input[type="submit"]:hover {
-	background: green;
-	color: #fff;	
+	height: 200px;
+	margin: 50px;
 }
-
-.match {
-	color: white;
-	background: rgba(0, 245, 16, 0.9);
-
-}
-
-.not-match {
-	color: white;
-	background-color: rgba(250, 2, 15, 0.9);
-}
-
-
