@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width="300" style="border: 1px solid #000"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		//получить контекст
+		var canvas = canvas.getContext('2d');
+
+		//т.к. канвас не поддерживатся в ie то проверяем
+		if(!context) {
+			alert('Чувак качай норм браузер');
+		}
+
+		//практически всё делается через контекст
+		context.strokeStyle = '#f00'; //цвет обводки
+		context.fillStyle = '#ff0'; //цвет заливки
+		context.lineWidth = 4; //толщина линии
+
+		//рисуем между двумя операторами
+		context.beginPath(); //начали рисовть
+			// метод размечающий дугу можно так же исп. для начертания окружности
+			// конечный угол указывается в радианах 2 * Math.PI - 360 град
+			// true - рисование по часовой стрелке
+			context.arc(150, 150, 100, 0, 2 * Math.PIб, true);
+			// что бы тепер вывести дугу нужно её обвести или закрасить:
+			context.stroke();
+		context.closePath(); //закончили рисовать
+
+		context.beginPath(); 
+			context.arc(110, 110, 100, 0, 2 * Math.PIб, true);
+			context.fill();
+		context.closePath();
+
+		context.beginPath(); 
+			context.arc(190, 110, 100, 0, 2 * Math.PIб, true);
+			context.fill();
+		context.closePath();
+
+		//рисуем линию
+		context.beginPath(); 
+			context.moveTo(150, 120); //начальная точка
+			context.lineTo(135, 180); //рисуем линию в конечную точку и перемещаем начальную точку на конечные координаты
+			context.stroke;
+		context.closePath();
+
+		//кривая безье
+		context.stroke = '#000';
+		context.beginPath();
+		var x = 0, y = 0;
+		for (var i = 0; i < 5; i++) {
+			content.moveTo (80 + x, 85 + y);
+			context.bezierCurve(60+ x, 60 + y, 120 + x, 40 + y, 100 + x, y);
+			context.stroke();
+			x += 15;
+			y -= 5;
+		}	
+		context.closePath();		
+		
+
+
+	</script>
+</body>
+</html>

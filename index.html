@@ -2,17 +2,104 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>jQuery intro</title>
+	<title></title>
 	<link rel="stylesheet" href="css/main.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 </head>
 <body>
-	<div id="block" class="block"></div>
-		<div class="block">
-			<p><span class="inner-span">Hellow!</span></p>
-		</div>
+	<div class="menu" id="menu"> <!-- Корневой элемент содержащий всю разметк 
+	- id имеет только верхний корневой элемент, вся разметка внутри него на классах-->
+		<
+	</div>
 	<script>
-		$('#block');
+		function Menu(options) {
+			var container;
+
+			//часто в серьёзных проектах разметка генерируется на основе данных т.е. она не существует изначально
+			function render() {
+				container = document.createElement('div');
+				container.className = 'menu';
+				var titleElement = document.createElement('span');
+				container.appendChild(titleElement);
+				titleElement.className = 'title';
+				titleElement.innerText = options.title; // из переданного в Menu объекта с параметрами
+				
+				container.onclick = function(event) {
+					var closestTitle = event.target.closest('.title'); // ближайший элемент с классом .title
+					if(closestTitle && container.contains(closestTitle)) { // что нажатый тайтл находится внутри контейнера
+					toggle();
+					}
+				}
+			}
+
+			function renderItems() {
+				var items = options.items || []; // или будет присвоено в том случае елси option.items не будет сущестоввать, т.е. значение по умолчанию
+				var ul = document.createElement('ul') 
+				
+				// пробегаем по все элементам items и для каждого вызываем функцию 
+				items.forEach(function(item) { 
+					var li = document.createElement('li');
+					li.innerText = item;
+				});
+				container.appendChild(ul);
+			}
+
+			function getContainer {
+				if(!container) {
+					render();
+				} 
+				return container;
+			}
+
+			function close() 
+			{
+				container.classList.remove('open');
+			}
+
+			function open() 
+			{
+				if (!container.querySelector('ul')) {
+					renderItems();
+				}
+				container.classList.add('open');
+			}
+
+			function toggle()
+			{
+				if(container.classList.contains('open')) {
+					close();
+				} else {
+					open();
+				}
+
+			}
+
+
+			this.getContainer = getContainer;
+			this.toggle = toggle; // один из способов вынесения функции в публичные методы когда эта функция так же используется внутри класса
+			this.open = open;
+			this.close = close;
+
+		}
+
+		//1.10
+
+		var menu = new Menu({
+			title: 'DB',
+			items: [
+				'MongoDB',
+				'MySQL',
+				'Redis'
+			]
+
+		});
+		
+		var container = menu.getContainer();
+
+		document.body.appendChild(container);
+
+		
 	</script>
+	
 </body>
 </html>
