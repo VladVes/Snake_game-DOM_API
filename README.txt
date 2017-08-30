@@ -1,2 +1,2 @@
+The snake game!
 Veselov Vladimir
-JavaScript first lessons
