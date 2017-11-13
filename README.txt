@@ -1,2 +1,1 @@
-The snake game!
-Veselov Vladimir
+# The snake game!
